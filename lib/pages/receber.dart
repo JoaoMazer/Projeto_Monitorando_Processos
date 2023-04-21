@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'menu.dart';
 
 class Protocolo {
   String protocolo;
@@ -73,6 +73,28 @@ class _ReceberScreenState extends State<ReceberScreen> {
                 },
               ),
             ),
+            SizedBox(
+              height:10,
+            ),
+            Container(
+              height: 40,
+              child:TextButton(
+                child: Text(
+                  "Voltar ao Menu",
+                  textAlign: TextAlign.center,
+                ),
+
+                  onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:(context)=> MenuScreen(),
+                       ),
+                  );
+                },
+                
+              )
+            )
           ],
         ),
       ),

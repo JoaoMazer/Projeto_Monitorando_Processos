@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'menu.dart';
 
 class Protocolo {
   String protocolo;
@@ -38,7 +38,7 @@ class _EnviarScreenState extends State<EnviarScreen> {
                     controller: _protocoloController,
                     maxLength: 20,
                     decoration: InputDecoration(
-                      labelText: 'Protocolo',
+                      labelText: 'Protocolo',                      
                     ),
                   ),
                   SizedBox(height: 12),
@@ -73,6 +73,28 @@ class _EnviarScreenState extends State<EnviarScreen> {
                 },
               ),
             ),
+            SizedBox(
+              height:10,
+            ),
+            Container(
+              height: 40,
+              child:TextButton(
+                child: Text(
+                  "Voltar ao Menu",
+                  textAlign: TextAlign.center,
+                ),
+
+                  onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:(context)=> MenuScreen(),
+                       ),
+                  );
+                },
+                
+              )
+            )
           ],
         ),
       ),
