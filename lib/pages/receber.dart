@@ -19,12 +19,12 @@ class _ReceberScreenState extends State<ReceberScreen> {
   final _protocoloController = TextEditingController();
   List<Protocolo> _protocolos = [];
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF3C5A99),
           title: Text('Receber Protocolos'),
         ),
         body: Column(
@@ -56,7 +56,7 @@ class _ReceberScreenState extends State<ReceberScreen> {
                         });
                       }
                     },
-                    child: Text('Salvar'),
+                    child: Text('Empilhar'),
                   ),
                 ],
               ),
@@ -74,27 +74,24 @@ class _ReceberScreenState extends State<ReceberScreen> {
               ),
             ),
             SizedBox(
-              height:10,
+              height: 10,
             ),
             Container(
-              height: 40,
-              child:TextButton(
-                child: Text(
-                  "Voltar ao Menu",
-                  textAlign: TextAlign.center,
-                ),
-
-                  onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:(context)=> MenuScreen(),
-                       ),
-                  );
-                },
-                
-              )
-            )
+                height: 40,
+                child: TextButton(
+                  child: Text(
+                    "Voltar ao Menu",
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MenuScreen(),
+                      ),
+                    );
+                  },
+                ))
           ],
         ),
       ),

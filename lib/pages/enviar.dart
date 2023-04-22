@@ -25,6 +25,7 @@ class _EnviarScreenState extends State<EnviarScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF3C5A99),
           title: Text('Enviar Protocolos'),
         ),
         body: Column(
@@ -56,7 +57,7 @@ class _EnviarScreenState extends State<EnviarScreen> {
                         });
                       }
                     },
-                    child: Text('Salvar'),
+                    child: Text('Empilhar'),
                   ),
                 ],
               ),
