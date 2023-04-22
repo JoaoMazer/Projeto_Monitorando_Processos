@@ -5,9 +5,20 @@ Fatec - ADS - Noturno
 
 ## Getting Started
 
-Este projeto tem como foco monitorar envio e recebimento de processos, com data de envio e recebimento
+### Objetivos
+Aplicação Web.
+Monitorar um tipo especifico de processo.
+#### Requisitos
+A aplicação deverá registrar:
+A identificacao do processo (código de barras).
+Data de leitura (dd/mm/yyyy, horas não interessam)
+Se está sendo enviado ou recebido.
 
-### Diretorio do GitHub
+### Estado do projeto
+Aplicação Web CRUD em desenvolvimento.
+As telas já estão definidas.
+
+## Diretorio do GitHub
 O projeto completo está disponível em:
 
 https://github.com/JoaoMazer/monitorando-processos.git
