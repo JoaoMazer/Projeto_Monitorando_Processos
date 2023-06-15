@@ -1,13 +1,10 @@
-
 import 'package:flutter/material.dart';
-
-import 'reset_password.dart';
-import 'signup.dart';
+import 'package:monitorando_processos/view/login_view.dart';
 import 'enviar.dart';
 import 'receber.dart';
-import 'menu.dart';
+import "anotacao_view.dart";
 
-class Login extends StatelessWidget {
+class MenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,53 +20,19 @@ class Login extends StatelessWidget {
           SizedBox(
             width: 128,
             height: 128,
-            child: Image.asset("assets/logo.png"),
+            child: Image.asset("assets/app-logo.png"),            
             ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-              labelText:"E-mail",
-              labelStyle:TextStyle(
-                color:Colors.black38,
-                fontWeight:FontWeight.w400,
-                fontSize:20,
-              ),
-              ),
-              style: TextStyle(
-                fontSize:20,
-                ),
-            ),
-            SizedBox(
-              height:10,
-            ),
-            TextFormField(
-              keyboardType:TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText:"Senha",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style:TextStyle(fontSize: 20),
-            ),
+            
             Container(
-              height:40,
-              alignment: Alignment.centerLeft,
+              height:50,
+              alignment: Alignment.center,
               child:TextButton(
-                child: Text(
-                  "Não lembro a senha!!",
-                ),
+                child: Text("Voltar a tela de Login"),
                 onPressed: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> ResetPassword(),
+                      builder:(context)=> LoginView(),
                        ),
                   );
                 },
@@ -82,15 +45,7 @@ class Login extends StatelessWidget {
                     height:60,
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end:Alignment.bottomRight,
-                        stops:[0.3,1],
-                        colors:[
-                          Color.fromRGBO(173,216,230, 1),
-                          Color.fromRGBO(35,35,142, 1),
-                        ],
-                      ),
+                      color: Color(0xFF3C5A99),
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       )
@@ -101,19 +56,19 @@ class Login extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Login",
+                              "Enviar processos",
                               style:TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color:Color.fromARGB(255, 255, 255, 255),
+                                color:Color.fromARGB(255, 224, 237, 243),
                                 fontSize:20,
                               ),
                               textAlign: TextAlign.left,
                               ),
                               Container(
                                 child:SizedBox(
-                                  child:Image.asset("assets/profile-picture.png"),
-                                  height: 28,
-                                  width:28,
+                                  child:Image.asset("assets/logoenviar.png"),
+                                  height: 40,
+                                  width: 40,
                                 ),
                               ),
                           ],
@@ -121,7 +76,7 @@ class Login extends StatelessWidget {
                         onPressed: () => {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> MenuScreen(),
+                      builder:(context)=> EnviarView(),
                        ),
                   ),
                   },
@@ -146,19 +101,19 @@ class Login extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Login com Facebook",
+                        "Receber processos",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color:Color.fromARGB(255, 176, 218, 253),
+                          color:Color.fromARGB(255, 224, 237, 243),
                           fontSize:20,
                         ),
                         textAlign: TextAlign.left,
                       ),
                       Container(
                         child: SizedBox(
-                          child: Image.asset("assets/fb-icon.png"),
-                          height: 28,
-                          width: 28,
+                          child: Image.asset("assets/logoreceber.png"),
+                          height: 40,
+                          width: 40,
                         ),
                         ),
                     ],
@@ -166,37 +121,66 @@ class Login extends StatelessWidget {
                   onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> MenuScreen(),
+                      builder:(context)=> ReceberView(),
                        ),
                   );},
                 ),
                 ),
             ),
+            
+
             SizedBox(
-              height:10,
+              height: 10,
             ),
             Container(
-              height: 40,
-              child:TextButton(
-                child: Text(
-                  "Cadastre-se",
-                  textAlign: TextAlign.center,
+              height: 60,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                color:Color(0xFF3C5A99),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
                 ),
-
-                  onPressed: (){
-                  Navigator.push(
+              ),
+              child: SizedBox.expand(
+                child:TextButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Anotação em um processo",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color:Color.fromARGB(255, 224, 237, 243),
+                          fontSize:20,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: Image.asset("assets/logoanotacao.png"),
+                          height: 40,
+                          width: 40,
+                        ),
+                        ),
+                    ],
+                  ),
+                  onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> Signup(),
+                      builder:(context)=> AnotacoesView(),
                        ),
-                  );
-                },
-                
-              )
-            ),
-            ],
+                      );
+                            }
               ),
-            ),
-        );
-  }
-}
+              ),
+         ),
+          ],
+               
+        ),
+      ),
+                                
+
+
+    );
+    }
+      }

@@ -9,24 +9,24 @@ class Protocolo {
   Protocolo(this.protocolo, this.data);
 }
 
-class EnviarScreen extends StatefulWidget {
+class ReceberView extends StatefulWidget {
   @override
-  _EnviarScreenState createState() => _EnviarScreenState();
+  _ReceberViewState createState() => _ReceberViewState();
 }
 
-class _EnviarScreenState extends State<EnviarScreen> {
+class _ReceberViewState extends State<ReceberView> {
   final _formKey = GlobalKey<FormState>();
   final _protocoloController = TextEditingController();
   List<Protocolo> _protocolos = [];
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF3C5A99),
-          title: Text('Enviar Protocolos'),
+          title: Text('Receber Processos'),
         ),
         body: Column(
           children: [
@@ -39,7 +39,7 @@ class _EnviarScreenState extends State<EnviarScreen> {
                     controller: _protocoloController,
                     maxLength: 20,
                     decoration: InputDecoration(
-                      labelText: 'Protocolo',                      
+                      labelText: 'Protocolo - use o leitor ou digite',
                     ),
                   ),
                   SizedBox(height: 12),
@@ -75,27 +75,24 @@ class _EnviarScreenState extends State<EnviarScreen> {
               ),
             ),
             SizedBox(
-              height:10,
+              height: 10,
             ),
             Container(
-              height: 40,
-              child:TextButton(
-                child: Text(
-                  "Voltar ao Menu",
-                  textAlign: TextAlign.center,
-                ),
-
-                  onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:(context)=> MenuScreen(),
-                       ),
-                  );
-                },
-                
-              )
-            )
+                height: 40,
+                child: TextButton(
+                  child: Text(
+                    "Voltar ao Menu",
+                    textAlign: TextAlign.center,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MenuView(),
+                      ),
+                    );
+                  },
+                ))
           ],
         ),
       ),

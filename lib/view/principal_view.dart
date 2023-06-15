@@ -1,0 +1,126 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+
+import '../controller/login_controller.dart';
+import '../controller/tarefa_controller.dart';
+import '../model/tarefa.dart';
+
+class PrincipalView extends StatefulWidget {
+  const PrincipalView({super.key});
+
+  @override
+  State<PrincipalView> createState() => _PrincipalViewState();
+}
+
+class _PrincipalViewState extends State<PrincipalView> {
+  var txtTitulo = TextEditingController();
+  var txtDescricao = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            Expanded(child: Text('Tarefas')),
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                textStyle: TextStyle(fontSize: 12),
+              ),
+              onPressed: () {
+                LoginController().logout();
+                Navigator.pushReplacementNamed(context, 'login');
+              },
+              icon: Icon(Icons.exit_to_app, size: 14),
+              label: Text('Sair'),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          salvarTarefa(context);
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  //
+  // ADICIONAR TAREFA
+  //
+  void salvarTarefa(context, {docId}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // retorna um objeto do tipo Dialog
+        return AlertDialog(
+          title: Text("Adicionar Tarefa"),
+          content: SizedBox(
+            height: 250,
+            width: 300,
+            child: Column(
+              children: [
+                TextField(
+                  controller: txtTitulo,
+                  decoration: InputDecoration(
+                    labelText: 'Título',
+                    prefixIcon: Icon(Icons.description),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 15),
+                TextField(
+                  controller: txtDescricao,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    labelText: 'Descrição',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actionsPadding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+          actions: [
+            TextButton(
+              child: Text("fechar"),
+              onPressed: () {
+                txtTitulo.clear();
+                txtDescricao.clear();
+                Navigator.of(context).pop();
+              },
+            ),
+            ElevatedButton(
+              child: Text("salvar"),
+              onPressed: () {
+                var t = Tarefa(
+                  LoginController().idUsuario(),
+                  txtTitulo.text,
+                  txtDescricao.text,
+                );
+                txtTitulo.clear();
+                txtDescricao.clear();
+                if (docId == null) {
+                  //
+                  // ADICIONAR TAREFA
+                  //
+                  TarefaController().adicionar(context, t);
+                } else {
+                  //
+                  // ATUALIZAR TAREFA
+                  //
+                  TarefaController().atualizar(context, docId, t);
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

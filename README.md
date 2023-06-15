@@ -7,18 +7,18 @@ Fatec - ADS - Noturno
 
 ### Objetivos
 Aplicação Web.
-Monitorar um tipo especifico de processo.
+Monitorar um tipo especifico de processo usando como identificação o protocolo.
 #### Requisitos
 A aplicação deverá registrar:
-A identificacao do processo (código de barras).
+A identificacao do processo (protocolo representado por um código de barras).
 Data de leitura (dd/mm/yyyy, horas não interessam)
 Se está sendo enviado ou recebido.
 
 ### Estado do projeto
-Aplicação Web CRUD em desenvolvimento.
+Aplicação em desenvolvimento.
 As telas já estão definidas.
 
 ## Diretorio do GitHub
 O projeto completo está disponível em:
 
-https://github.com/JoaoMazer/monitorando-processos.git
+https://github.com/JoaoMazer/Projeto_Monitorando_Processos
