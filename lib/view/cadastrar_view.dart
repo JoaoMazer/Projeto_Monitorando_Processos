@@ -23,7 +23,7 @@ class _CadastrarViewState extends State<CadastrarView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(backgroundColor: Color.fromARGB(250, 26, 35, 126), title: Row(children: [Expanded(child: Text('Crie um usuário'))],),),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 50, 30, 50),
         child: Column(

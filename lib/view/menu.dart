@@ -1,13 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:monitorando_processos/view/login_view.dart';
-import 'enviar.dart';
-import 'receber.dart';
-import "anotacao_view.dart";
+import '../controller/login_controller.dart';
+import 'enviado_view.dart';
+import 'recebido_view.dart';
+import 'listarenviado_view.dart';
+import 'listarrecebido_view.dart';
 
 class MenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(backgroundColor: Color.fromARGB(250, 26, 35, 126),
+        title: Row(
+          children: [
+            Expanded(child: Text('Escolha uma opção')),
+            FutureBuilder<String>(
+              future: LoginController().usuarioLogado(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        textStyle: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        LoginController().logout();
+                        Navigator.pushReplacementNamed(context, 'login');
+                      },
+                      icon: Icon(Icons.exit_to_app, size: 40),
+                      label: Text(snapshot.data.toString()),
+                    ),
+                  );
+                }
+                return Text('');
+              },
+            ),
+          ],
+        ),
+      ),
       body: Container (
         padding: EdgeInsets.only(
           top: 60, 
@@ -18,9 +49,9 @@ class MenuView extends StatelessWidget {
         child: ListView(
           children:<Widget>[
           SizedBox(
-            width: 128,
-            height: 128,
-            child: Image.asset("assets/app-logo.png"),            
+            width: 100,
+            height: 100,
+            child: Icon(Icons.content_paste, size: 100),
             ),
             
             Container(
@@ -45,7 +76,7 @@ class MenuView extends StatelessWidget {
                     height:60,
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
-                      color: Color(0xFF3C5A99),
+                      color: Color.fromARGB(250, 26, 35, 126),
                       borderRadius: BorderRadius.all(
                         Radius.circular(5),
                       )
@@ -66,9 +97,9 @@ class MenuView extends StatelessWidget {
                               ),
                               Container(
                                 child:SizedBox(
-                                  child:Image.asset("assets/logoenviar.png"),
-                                  height: 40,
-                                  width: 40,
+                                  child: Icon(Icons.arrow_circle_up_outlined, size: 60),
+                                  height: 80,
+                                  width: 80,
                                 ),
                               ),
                           ],
@@ -76,7 +107,7 @@ class MenuView extends StatelessWidget {
                         onPressed: () => {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> EnviarView(),
+                      builder:(context)=> EnviadoView(),
                        ),
                   ),
                   },
@@ -90,7 +121,7 @@ class MenuView extends StatelessWidget {
               height: 60,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
-                color:Color(0xFF3C5A99),
+                color:Color.fromARGB(250, 26, 35, 126),
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
                 ),
@@ -111,9 +142,9 @@ class MenuView extends StatelessWidget {
                       ),
                       Container(
                         child: SizedBox(
-                          child: Image.asset("assets/logoreceber.png"),
-                          height: 40,
-                          width: 40,
+                          child: Icon(Icons.arrow_circle_down, size: 60),
+                          height: 80,
+                          width: 80,
                         ),
                         ),
                     ],
@@ -121,14 +152,12 @@ class MenuView extends StatelessWidget {
                   onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> ReceberView(),
+                      builder:(context)=> RecebidoView(),
                        ),
                   );},
                 ),
                 ),
             ),
-            
-
             SizedBox(
               height: 10,
             ),
@@ -136,7 +165,7 @@ class MenuView extends StatelessWidget {
               height: 60,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
-                color:Color(0xFF3C5A99),
+                color:Color.fromARGB(250, 26, 35, 126),
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
                 ),
@@ -147,7 +176,7 @@ class MenuView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Anotação em um processo",
+                        "Listar Enviados",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color:Color.fromARGB(255, 224, 237, 243),
@@ -157,9 +186,9 @@ class MenuView extends StatelessWidget {
                       ),
                       Container(
                         child: SizedBox(
-                          child: Image.asset("assets/logoanotacao.png"),
-                          height: 40,
-                          width: 40,
+                          child: Icon(Icons.content_paste_go_rounded, size: 60),
+                          height: 80,
+                          width: 80,
                         ),
                         ),
                     ],
@@ -167,7 +196,52 @@ class MenuView extends StatelessWidget {
                   onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:(context)=> AnotacoesView(),
+                      builder:(context)=> ListarEnviadoView(),
+                       ),
+                  );},
+                ),
+                ),
+            ),
+            
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 60,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                color:Color.fromARGB(250, 26, 35, 126),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: SizedBox.expand(
+                child:TextButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Listar Recebidos",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color:Color.fromARGB(255, 224, 237, 243),
+                          fontSize:20,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child:  Icon(Icons.content_paste_search, size: 60,),
+                          height: 80,
+                          width: 80,
+                        ),
+                        ),
+                    ],
+                  ),
+                  onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:(context)=> ListarRecebidoView(),
                        ),
                       );
                             }

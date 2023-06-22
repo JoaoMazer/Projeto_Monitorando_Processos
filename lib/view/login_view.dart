@@ -23,13 +23,14 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(appBar: AppBar(backgroundColor: Color.fromARGB(250, 26, 35, 126), title: Row(children: [Expanded(child: Text('Bem vindo!'))],),),
+      backgroundColor: Color.fromARGB(255, 224, 237, 243),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 50, 30, 50),
         child: Column(
           children: [
             Text(
-              'Monitoramento de processos \n Entre com seu usuário \n ou crie um usuário',
+              'Monitoramento de processos \n\n Entre com seu usuário \n ou crie um usuário',
               style: TextStyle(fontSize: 30),
             ),
             SizedBox(height: 60),
@@ -106,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(200, 40),
-                backgroundColor: Color(0xFF3C5A99),
+                backgroundColor: Color.fromARGB(250, 26, 35, 126),
               ),
               onPressed: () {
                 LoginController().login(

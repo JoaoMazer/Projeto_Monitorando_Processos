@@ -17,10 +17,12 @@ class LoginController {
     )
         .then((resultado) {
       //Conta Criada com Sucesso
-      FirebaseFirestore.instance.collection('usuarios').add({
-      'uid': resultado.user!.uid,
-      'nome': nome,
-      });
+      FirebaseFirestore.instance.collection('usuarios').add(
+        {
+        'uid': resultado.user!.uid,
+        'nome': nome,
+        }
+        );
 
       sucesso(context, 'Usuário criado, bem vindo!!');
       Navigator.pop(context);
@@ -28,7 +30,7 @@ class LoginController {
       //Não foi possível criar a conta
       switch (e.code) {
         case 'email-already-in-use':
-          erro(context, 'O email já foi cadastrado, faça a recuperação de senha.');
+          erro(context, 'Esse email já está cadastrado, faça a recuperação de senha.');
           break;
         case 'invalid-email':
           erro(context, 'O formato do email é inválido.');
@@ -84,11 +86,13 @@ class LoginController {
     Navigator.pop(context);
   }
 
+  //
   //logout
   //
   logout(){
     FirebaseAuth.instance.signOut();
   }
+
     //
   // ID do Usuário Logado
   //
@@ -112,5 +116,4 @@ class LoginController {
     );
     return usuario;
   }
-
 }
